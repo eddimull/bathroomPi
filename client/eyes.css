@@ -1,0 +1,32 @@
+#main_banner {
+    position: relative;
+}
+
+.eyeContainer {
+    width: 68px;
+    position: absolute;
+    left: 33px;
+    height: 20px;
+    top: 22px;
+}
+
+.eye {
+    border-radius: 10px;
+    background: black;
+    height: 10px;
+    width: 10px;
+    opacity: .5;
+    -webkit-transition: background .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out;
+    -ms-transition: background .5s ease-in-out;
+    -o-transition: background .5s ease-in-out;
+    transition: background .5s ease-in-out;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
