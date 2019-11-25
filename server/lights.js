@@ -162,9 +162,8 @@ async function refresh()
         var lightVal = await light.get_currentValue();
         var message = {
             'type': 'status',
-            'data': timer
-        }
-        timer++
+            'data': lightVal
+        } 
 
         if (lightVal > 100) {
             if (inSession == false) {
@@ -180,15 +179,13 @@ async function refresh()
             }
             inSession = false;
         }
-        if(timer > 3)
-        {
 
-            io.emit('message', message);
-            
-            getHighScore();
-            getLastScore();
-            timer = 0;
-        }
+        io.emit('message', message);
+        
+        getHighScore();
+        getLastScore();
+           
+        
 
     } else {
         console.log('Module not connected');
