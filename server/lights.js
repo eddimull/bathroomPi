@@ -160,10 +160,7 @@ async function refresh()
 {
     if (await light.isOnline()) {
         var lightVal = await light.get_currentValue();
-        var message = {
-            'type': 'status',
-            'data': lightVal
-        } 
+
 
         if (lightVal > 100) {
             if (inSession == false) {
@@ -179,6 +176,11 @@ async function refresh()
             }
             inSession = false;
         }
+        
+        var message = {
+            'type': 'status',
+            'data': inSession ? 50 : 1000
+        } 
 
         io.emit('message', message);
         
