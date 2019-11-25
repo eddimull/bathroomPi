@@ -26,11 +26,11 @@ var io = socket.listen(server, {
     "match origin protocol": true
 });
 
-// server.listen(443, function() {
+server.listen(443, function() {
     console.log('bazinga!');
     // doTheThing(); //init
     watchLights();
-// });
+});
 
 async function watchLights()
 {
@@ -160,8 +160,11 @@ async function refresh()
 {
     if (await light.isOnline()) {
         var lightVal = await light.get_currentValue();
-
-        
+        var message = {
+            'type': 'status',
+            'data': timer
+        }
+        timer++
 
         if (lightVal > 100) {
             if (inSession == false) {
@@ -169,13 +172,22 @@ async function refresh()
                 startSession();
             }
             inSession = true;
-
+            
         } else {
             if (inSession == true) {
                 console.log('light off');
                 finishSession();
             }
             inSession = false;
+        }
+        if(timer > 3)
+        {
+
+            io.emit('message', message);
+            
+            getHighScore();
+            getLastScore();
+            timer = 0;
         }
 
     } else {
