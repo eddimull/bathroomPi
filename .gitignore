@@ -1,0 +1,6 @@
+
+server/.env
+node_modules
+*.crt
+*.key
+server/package-lock.json
