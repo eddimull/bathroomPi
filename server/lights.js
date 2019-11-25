@@ -2,9 +2,8 @@ require('dotenv').config()
 var fs = require('fs');
 var https = require('https');
 var express = require('express');
-var socket = require('socket.io')(https, {
-    origins: process.env.ORIGINS
-});
+var socket = require('socket.io')(https,{origins:'apexinnovations.com:* https://apexinnovations.com:* https://www.apexinnovations.com:* https://devbox:*'});
+
 var sslOptions = {
     key: fs.readFileSync('ssl/' + process.env.SSL_KEYNAME),
     cert: fs.readFileSync('ssl/' + process.env.SSL_CERTNAME)
@@ -27,11 +26,11 @@ var io = socket.listen(server, {
     "match origin protocol": true
 });
 
-server.listen(443, function() {
+// server.listen(443, function() {
     console.log('bazinga!');
     // doTheThing(); //init
     watchLights();
-});
+// });
 
 async function watchLights()
 {
