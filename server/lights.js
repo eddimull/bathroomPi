@@ -165,14 +165,14 @@ async function refresh()
         if (lightVal > 100) {
             if (inSession == false) {
                 console.log('light on');
-                startSession();
+                // startSession();
             }
             inSession = true;
             
         } else {
             if (inSession == true) {
                 console.log('light off');
-                finishSession();
+                // finishSession();
             }
             inSession = false;
         }
@@ -184,8 +184,8 @@ async function refresh()
 
         io.emit('message', message);
         
-        getHighScore();
-        getLastScore();
+        // getHighScore();
+        // getLastScore();
            
         
 
