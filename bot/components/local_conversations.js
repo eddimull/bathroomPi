@@ -35,7 +35,11 @@ module.exports = function localConversations (controller) {
         let errmsg = new YErrorMsg()
         if (await YAPI.RegisterHub(process.env.LIGHTHOST, errmsg) != YAPI.SUCCESS) {
           console.log('Cannot contact VirtualHub on 127.0.0.1: ' + errmsg.msg)
-            return 'Cannot connect to device';
+            bot.startConversation(message,function(err,convo)
+            {
+              
+              convo.say('The device is offline.');
+            })
         }
     
         // Select specified device, or use first available one
@@ -61,6 +65,7 @@ module.exports = function localConversations (controller) {
 
     async function refresh()
     {
+
         if (await light.isOnline()) {
             var lightVal = await light.get_currentValue();
             
@@ -74,13 +79,15 @@ module.exports = function localConversations (controller) {
                   // }
                   bot.startConversation(message,function(err,convo)
                   {
-
+                    
                     convo.say('The bathroom is now vacant.');
                   })
             }
 
         } else {
-            console.log('Module not connected');
+            console.log('Module not connected',light);
+            // light = YLightSensor.FindLightSensor(serial + '.lightSensor')
+
             setTimeout(refresh, 1000) 
         }
         
