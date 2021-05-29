@@ -16,7 +16,7 @@
     "request": "^2.88.0",
     "socket.io-client": "^2.3.0",
     "wordfilter": "^0.2.6",
-    "ws": "^7.2.0",
+    "ws": "^7.4.6",
     "yoctolib-es2017": "^1.10.38168"
   },
   "devDependencies": {},
